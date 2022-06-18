@@ -1,3 +1,13 @@
+$(document).ready(startUp);
+
+function startUp() {
+    $(".ducky").on({
+        "click": function() {
+            $(".corndog").css("left", $(".ducky").position().left());
+        }
+    });
+}
+
 $(function() {
     var x = 0;
     setInterval(function(){
@@ -23,3 +33,4 @@ $(function() {
         }
     }, 1);
 })
+
