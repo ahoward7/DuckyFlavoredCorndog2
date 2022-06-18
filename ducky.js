@@ -8,7 +8,7 @@ $(function() {
 
 $(function() {
     var x = 0;
-    var h = 2;
+    var h = 1;
     setInterval(function(){
         x+=h;
         $(".ducky").css("left", x + "px");
@@ -21,5 +21,5 @@ $(function() {
             h = -h
             $(".ducky").css("background-image", "url('Assets/DuckSprites/duckRight.gif')");
         }
-    }, 10);
+    }, 1);
 })

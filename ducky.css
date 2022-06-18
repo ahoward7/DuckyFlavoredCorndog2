@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    overflow-y: hidden;
 }
 
 .background {
@@ -15,10 +16,50 @@ body {
     z-index: -100000;
 }
 
-.ducky {
-    height: 150px;
-    width: 150px;
+.grass {
+    width: 25%;
+    height: 8%;
     position: absolute;
+    bottom: -1%;
+    background-image: url("Assets/Other/grass.png");
+    background-repeat: repeat-x;  
+    background-size: cover;
+}
+
+.g2 {
+    left: 25%
+}
+
+.g3 {
+    left: 50%;
+}
+
+.g4 {
+    left: 75%
+}
+
+.corndog {
+    height: 60vh;
+    width: 14.4vh;
+    margin-top: 8vh;
+    margin-left: 44vw;
+    background: url("Assets/Other/corndog.png");
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    transition: transform .3s;
+    z-index: 10;
+}
+
+.corndog:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.ducky {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    bottom: 15px;
     background-image: url("Assets/DuckSprites/duckRight.gif");
     background-repeat: no-repeat;
     background-size: cover;
