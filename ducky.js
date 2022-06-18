@@ -3,7 +3,7 @@ $(document).ready(startUp);
 function startUp() {
     $(".ducky").on({
         "click": function() {
-            $(".corndog").css("left", $(".ducky").position().left());
+            smashDucky(this)
         }
     });
 }
@@ -34,3 +34,33 @@ $(function() {
     }, 1);
 })
 
+function smashDucky(ducky) {
+
+    if ($(".corndog").position().left <= $(".ducky").position().left) {
+        $(".corndog").css({
+            "left": $(ducky).position().left - 500,
+            "top": parseInt($(".corndog").css("top")) + 180 + "px",
+            "transform-origin": "bottom center",
+            "transform": "rotate(100deg)"
+        });
+    }
+    else {
+        $(".corndog").css({
+            "left": $(ducky).position().left + 500,
+            "top": parseInt($(".corndog").css("top")) + 180 + "px",
+            "transform-origin": "bottom center",
+            "transform": "rotate(-100deg)"
+        });
+    }
+
+    setTimeout(returnCorndog, 400);
+}
+
+function returnCorndog() {
+    $(".corndog").css({
+        "left": "calc(50vw - 7.2vh)",
+        "top": "8vh",
+        "transform-origin": "middle center",
+        "transform": "scale(1)"
+    });
+}

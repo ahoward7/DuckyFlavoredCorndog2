@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .background {
@@ -41,14 +41,14 @@ body {
     background: url("Assets/Other/corndog.png");
     background-repeat: repeat;
     background-size: 100% 100%;
-    transition: transform .3s;
+    transition: transform .3s, left .3s;
     transform-origin: middle center;
+    cursor: pointer;
     z-index: 10;
 }
 
-.corndog:hover {
+.corndog-hover:hover {
     transform: scale(1.15);
-    cursor: pointer;
 }
 
 .ducky {
@@ -59,4 +59,5 @@ body {
     background-image: url("Assets/DuckSprites/duckRight.gif");
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
