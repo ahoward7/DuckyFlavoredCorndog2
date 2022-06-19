@@ -1,11 +1,22 @@
 $(document).ready(startUp);
 
 function startUp() {
-    $(".ducky").on({
+    $(".corndog").on({
         "click": function() {
-            smashDucky(this)
+
+            var ducky = new Ducky(0, 0, .99);
+           
+            setInterval(function(){
+                ducky.move();
+            }, 10);
+
+            $(".ducky").on({
+                "click": function() {
+                    smashDucky(this)
+                }
+            });
         }
-    });
+    })
 }
 
 $(function() {
@@ -16,29 +27,10 @@ $(function() {
     }, 50);
 })
 
-$(function() {
-    var x = 0;
-    var h = 1;
-    setInterval(function(){
-        x+=h;
-        $(".ducky").css("left", x + "px");
-
-        if (parseInt($(".ducky").css("left")) >= window.innerWidth - $(".ducky").width()) {
-            h = -h
-            $(".ducky").css("background-image", "url('Assets/DuckSprites/duckLeft.gif')");
-        }
-        else if (parseInt($(".ducky").css("left")) <= 0) {
-            h = -h
-            $(".ducky").css("background-image", "url('Assets/DuckSprites/duckRight.gif')");
-        }
-    }, 1);
-})
-
 function smashDucky(ducky) {
-
     if ($(".corndog").position().left <= $(".ducky").position().left) {
         $(".corndog").css({
-            "left": $(ducky).position().left - 500,
+            "left": $(ducky).position().left - 525,
             "top": parseInt($(".corndog").css("top")) + 180 + "px",
             "transform-origin": "bottom center",
             "transform": "rotate(100deg)"
@@ -46,14 +38,14 @@ function smashDucky(ducky) {
     }
     else {
         $(".corndog").css({
-            "left": $(ducky).position().left + 500,
+            "left": $(ducky).position().left + 525,
             "top": parseInt($(".corndog").css("top")) + 180 + "px",
             "transform-origin": "bottom center",
             "transform": "rotate(-100deg)"
         });
     }
 
-    setTimeout(returnCorndog, 400);
+    setTimeout(returnCorndog, 300);
 }
 
 function returnCorndog() {
@@ -63,4 +55,32 @@ function returnCorndog() {
         "transform-origin": "middle center",
         "transform": "scale(1)"
     });
+}
+
+class Ducky {
+    constructor(x, y, friction) {
+        console.log(x, y, friction);
+        this.dir = 2;
+        this.x = x;
+        this.y = y;
+        this.acc = .6;
+        this.friction = friction;
+        this.duck = $('<div>', {
+            class: 'ducky',
+        }).appendTo('.background');
+    }
+
+    move() {
+        this.x+=this.dir;
+        $(this.duck).css("left", this.x + "px");
+
+        if (parseInt($(this.duck).css("left")) >= window.innerWidth - $(this.duck).width()) {
+            this.dir = -this.dir
+            $(this.duck).css("background-image", "url('Assets/DuckSprites/duckLeft.gif')");
+        }
+        else if (parseInt($(this.duck).css("left")) <= 0) {
+            this.dir = -this.dir
+            $(this.duck).css("background-image", "url('Assets/DuckSprites/duckRight.gif')");
+        }
+    }
 }

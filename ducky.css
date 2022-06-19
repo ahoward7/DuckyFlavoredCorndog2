@@ -41,7 +41,7 @@ body {
     background: url("Assets/Other/corndog.png");
     background-repeat: repeat;
     background-size: 100% 100%;
-    transition: transform .3s, left .3s;
+    transition: transform .2s, left .2s, top .2s;
     transform-origin: middle center;
     cursor: pointer;
     z-index: 10;
@@ -60,4 +60,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
+}
+
+.duck {
+    left: 50%;
 }
