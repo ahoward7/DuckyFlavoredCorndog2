@@ -16,7 +16,7 @@ function startUp() {
                 }
             });
         }
-    })
+    });
 }
 
 $(function() {
@@ -57,29 +57,62 @@ function returnCorndog() {
     });
 }
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 class Ducky {
     constructor(x, y, friction) {
-        console.log(x, y, friction);
-        this.dir = 2;
+        this.dir = 1;
         this.x = x;
         this.y = y;
         this.acc = .6;
         this.friction = friction;
+        this.moveNum = 0;
         this.duck = $('<div>', {
             class: 'ducky',
         }).appendTo('.background');
     }
 
     move() {
-        this.x+=this.dir;
+        this.moveNum++;
+        if (this.moveNum === 200) {
+            var dirNum = getRandomInt(1, 4);
+            switch (dirNum) {
+                case 1:
+                    this.dir = -1;
+                    $(this.duck).css("background-image", "url('Assets/DuckSprites/duckLeft.gif')");
+                    break;
+                case 2:
+                    if (this.dir == -1) {
+                        $(this.duck).css("background-image", "url('Assets/DuckSprites/still-left.png')");
+                    }
+                    else if (this.dir == 1) {
+                        $(this.duck).css("background-image", "url('Assets/DuckSprites/still-right.png')");
+                    }
+
+                    this.dir = 0;
+                    break;
+                case 3:
+                    this.dir = 1;
+                    $(this.duck).css("background-image", "url('Assets/DuckSprites/duckRight.gif')");
+                    break;
+            }
+            this.moveNum = 0;
+        }
+
+        this.x += this.dir;
+        this.x += this.dir;
         $(this.duck).css("left", this.x + "px");
 
         if (parseInt($(this.duck).css("left")) >= window.innerWidth - $(this.duck).width()) {
-            this.dir = -this.dir
+            this.dir = -this.dir;
             $(this.duck).css("background-image", "url('Assets/DuckSprites/duckLeft.gif')");
         }
         else if (parseInt($(this.duck).css("left")) <= 0) {
-            this.dir = -this.dir
+            this.dir = -this.dir;
             $(this.duck).css("background-image", "url('Assets/DuckSprites/duckRight.gif')");
         }
     }
