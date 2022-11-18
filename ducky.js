@@ -3,8 +3,7 @@ $(document).ready(startUp);
 function startUp() {
     $(".corndog").on({
         "click": function() {
-
-            var ducky = new Ducky(0, 0, .99);
+            var ducky = new Ducky(getRandomInt(100, 200));
            
             setInterval(function(){
                 ducky.move();
@@ -93,16 +92,21 @@ function isSmashed ($div1, $div2) {
 };
 
 class Ducky {
-    constructor(x, y, friction) {
+    constructor(w) {
         this.dir = 1;
-        this.x = x;
-        this.y = y;
+        this.x = getRandomInt(0, window.innerWidth - w);
+        this.y = getRandomInt(15, window.innerHeight - w);
         this.acc = .6;
-        this.friction = friction;
+        this.friction = .99;
         this.moveNum = 0;
         this.duck = $('<div>', {
             class: 'ducky',
         }).appendTo('.background');
+
+        $(this.duck).css("left", this.x + "px");
+        $(this.duck).css("top", this.y + "px");
+        $(this.duck).css("width", w + "px");
+        $(this.duck).css("height", w + "px");
     }
 
     move() {
@@ -132,8 +136,7 @@ class Ducky {
             this.moveNum = 0;
         }
 
-        this.x += this.dir;
-        this.x += this.dir;
+        this.x += this.dir*2;
         $(this.duck).css("left", this.x + "px");
 
         if (parseInt($(this.duck).css("left")) >= window.innerWidth - $(this.duck).width()) {

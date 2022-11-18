@@ -24,6 +24,7 @@ body {
     background-image: url("Assets/Other/grass.png");
     background-repeat: repeat-x;  
     background-size: cover;
+    pointer-events: none;
 }
 
 .g2 {left: 25%}
